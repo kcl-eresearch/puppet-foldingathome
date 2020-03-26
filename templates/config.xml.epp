@@ -1,0 +1,30 @@
+<config>
+  <!-- Folding Slot Configuration -->
+  <gpu v='<%= $foldingathome::gpu_enable %>'/>
+
+<% if $foldingathome::user_name { -%>
+  <!-- User Information -->
+  <user v='<%= $foldingathome::user_name %>'/>
+<% } -%>
+
+  <!-- Folding Slots -->
+  <slot id='0' type='CPU'>
+    <cpus v='<%= $foldingathome::cpu_slots %>' />
+  </slot>
+<% if $foldingathome::allow { -%>
+  <allow><%= $foldingathome::allow %></allow>
+<% } -%>
+
+<% if $foldingathome::web_allow { -%>
+  <web-allow><%= $foldingathome::web_allow %></web-allow>
+<% } -%>
+
+<% if $foldingathome::team_id { -%>
+  <team v='<%= $foldingathome::team_id %>'/>
+<% } -%>
+
+<% if $foldingathome::web_password { -%>
+  <password v='<%= $foldingathome::web_password %>' />
+<% } -%>
+
+</config>
