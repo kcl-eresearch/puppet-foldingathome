@@ -19,7 +19,7 @@ class foldingathome (
   $allow = undef,
   $web_allow = undef,
   $team_id = 0,
-  $url = 'https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.5/fahclient_7.5.1_amd64.deb',
+  $url = 'http://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.5/fahclient_7.5.1_amd64.deb',
   $cpu_slots = 1,
   $web_password = undef,
 ) {
