@@ -2,6 +2,6 @@
 foldingathome::gpu_enable: false
 foldingathome::user_name: 'fahpuppettestuser'
 foldingathome::allow: '0/0'
+foldingathome::web_allow: '0/0'
 foldingathome::team_id: 0
 foldingathome::cpu_slots: 2
-foldingathome::web_password: 'thisisatest'
