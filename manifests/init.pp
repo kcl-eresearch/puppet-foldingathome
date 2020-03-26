@@ -24,7 +24,7 @@ class foldingathome (
   $web_password = undef,
 ) {
 
-  file {'/tmp/fahclient.deb':
+  archive {'/tmp/fahclient.deb':
     ensure => present,
     source => $url
   }
@@ -33,7 +33,7 @@ class foldingathome (
     ensure   => installed,
     provider => 'dpkg',
     source   => '/tmp/fahclient.deb',
-    require  => File['/tmp/fahclient.deb']
+    require  => Archive['/tmp/fahclient.deb']
   }
 
   service {'FAHClient':
