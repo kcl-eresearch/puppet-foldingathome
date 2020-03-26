@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
-require 'spec_helper'
+# Encoding: utf-8
+require_relative '../../spec_linuxhelper'
 
 describe 'foldingathome' do
   on_supported_os.each do |os, os_facts|

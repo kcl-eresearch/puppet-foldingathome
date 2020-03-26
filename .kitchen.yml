@@ -1,0 +1,48 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: puppet_apply
+  custom_options: <%= ENV['PUPPET_COLOR'] %>
+  manifests_path: spec/manifests
+  modules_path: ext-modules
+  ignored_paths_from_root:
+    - .kitchen
+  hiera_config_path: hiera.tests.yaml
+  require_chef_for_busser: false
+  resolve_with_librarian_puppet: false
+  require_puppet_collections: true
+  puppet_debug: <%= ENV['PUPPET_DEBUG'] %>
+  puppet_detailed_exitcodes: true
+  max_retries: 2
+  wait_for_retry: 10
+  retry_on_exit_code:
+    - 2 # The run succeeded, and some resources were changed.
+    - 6 # The run succeeded, and included both changes and failures.
+
+transport:
+  name: ssh_tgz
+
+platforms:
+  - name: ubuntu-18.04
+    driver_plugin: vagrant
+    driver_config:
+      box_url: https://vagrantcloud.com/bento/ubuntu-18.04
+
+verifier:
+  name: shell
+
+suites:
+  - name: default
+    driver:
+      customize:
+        cpus: 2
+        memory: 4096
+      network:
+        - ["private_network", {ip: "192.168.33.50"}]
+    provisioner:
+      manifest: default.pp
+      hiera_data_path: spec/hieradata # use a local hieradata folder for this suite
+    verifier:
+      command: rspec -c -f d -I spec spec/acceptance/default_spec.rb
