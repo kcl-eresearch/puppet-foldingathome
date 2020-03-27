@@ -7,8 +7,9 @@
 # @param web_allow Specify IPs that can access the web control client remotely
 # @param tean_id Team ID that your contributing to
 # @param url Download URL for the Folding@Home Client Installer
-# @param cpu_slots Number of CPU threads to run on this system
+# @param [Hash] cpu_slots Hash representing the CPU slots and the number of cores for each slot
 # @param web_password Password for remote access to the web console
+# @param user_passkey Passkey for yor username, if you have one
 #
 # @example
 #   include foldingathome
@@ -20,9 +21,12 @@ class foldingathome (
   $web_allow = undef,
   $team_id = 0,
   $url = 'http://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.5/fahclient_7.5.1_amd64.deb',
-  $cpu_slots = 1,
+  Hash $cpu_slots = {'0' => '1'},
   $web_password = undef,
+  $user_passkey = undef,
 ) {
+
+  $cpu_slots.each |$key, $value| {notice("${key} = ${value}")}
 
   archive {'/tmp/fahclient.deb':
     ensure => present,
