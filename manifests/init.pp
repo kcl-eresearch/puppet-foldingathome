@@ -26,8 +26,6 @@ class foldingathome (
   $user_passkey = undef,
 ) {
 
-  $cpu_slots.each |$key, $value| {notice("${key} = ${value}")}
-
   archive {'/tmp/fahclient.deb':
     ensure => present,
     source => $url
