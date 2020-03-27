@@ -6,7 +6,9 @@
   "license": "MIT",
   "source": "",
   "dependencies": [
-
+    { 
+      "name": "puppet/archive", "version_requirement": ">= 3.0.0 < 5.0.0"
+    }
   ],
   "operatingsystem_support": [
     {
@@ -19,13 +21,6 @@
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
         "18.04"
-      ]
-    },
-    {
-      "operatingsystem": "windows",
-      "operatingsystemrelease": [
-        "2019",
-        "10"
       ]
     }
   ],
