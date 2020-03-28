@@ -40,7 +40,7 @@ class foldingathome (
 
   service {'FAHClient':
     ensure  => running,
-    require => Package['fahclient']
+    require => [Package['fahclient'], File['/etc/fahclient/config.xml']]
   }
 
   file {'/etc/fahclient/config.xml':
