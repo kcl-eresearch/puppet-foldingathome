@@ -1,0 +1,6 @@
+---
+  vagrant:
+    provisioner: vagrant
+    images: ['generic/ubuntu1804']
+    params:
+        vagrant_provider: virtualbox
