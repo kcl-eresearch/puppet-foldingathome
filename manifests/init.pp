@@ -35,7 +35,7 @@ class foldingathome (
     ensure   => installed,
     provider => 'dpkg',
     source   => '/tmp/fahclient.deb',
-    require  => Archive['/tmp/fahclient.deb']
+    require  => [Archive['/tmp/fahclient.deb'], File['/etc/fahclient/config.xml']],
   }
 
   service {'FAHClient':
@@ -43,10 +43,14 @@ class foldingathome (
     require => [Package['fahclient'], File['/etc/fahclient/config.xml']]
   }
 
+  file {'/etc/fahclient':
+    ensure => directory,
+  }
+
   file {'/etc/fahclient/config.xml':
     ensure  => file,
     content => epp('foldingathome/config.xml.epp'),
-    require => Package['fahclient'],
+    require => File['/etc/fahclient'],
     notify  => Service['FAHClient']
   }
 }
