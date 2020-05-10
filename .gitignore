@@ -25,5 +25,4 @@
 .project
 .envrc
 /inventory.yaml
-.kitchen/
 .vscode/

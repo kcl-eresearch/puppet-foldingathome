@@ -6,8 +6,9 @@
   "license": "MIT",
   "source": "https://github.com/njhowell/puppet-foldingathome",
   "dependencies": [
-    { 
-      "name": "puppet/archive", "version_requirement": ">= 3.0.0 < 5.0.0"
+    {
+      "name": "puppet/archive",
+      "version_requirement": ">= 3.0.0 < 5.0.0"
     }
   ],
   "operatingsystem_support": [
