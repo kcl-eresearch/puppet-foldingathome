@@ -86,3 +86,56 @@ EOM
   end
 end
 
+
+desc 'Provision VM and run litmus tests'
+task :run_tests, [:key, :collection, :module_repository] do |_task, args|
+  args.with_defaults(module_repository: 'https://forgeapi.puppetlabs.com', key: 'vagrant')
+  Rake::Task['litmus:provision_list'].invoke(args[:key])
+  Rake::Task['litmus:install_agent'].invoke(args[:collection])
+  Rake::Task['fix_secure_path'].invoke
+  Rake::Task['litmus:install_module'].invoke(nil, args[:module_repository])
+  Rake::Task['litmus:acceptance:parallel'].invoke
+end
+
+def fix_secure_path(collection, targets, inventory_hash)
+  Honeycomb.start_span(name: 'fix_secure_path') do |span|
+    span.add_field('litmus.collection', collection)
+    span.add_field('litmus.targets', targets)
+
+    include ::BoltSpec::Run
+    params = if collection.nil?
+               {}
+             else
+               Honeycomb.current_span.add_field('litmus.collection', collection)
+               { 'collection' => collection }
+             end
+    raise "puppet_agent was not found in #{DEFAULT_CONFIG_DATA['modulepath']}, please amend the .fixtures.yml file" \
+     unless File.directory?(File.join(DEFAULT_CONFIG_DATA['modulepath'], 'puppet_agent'))
+
+    # using boltspec, when the runner is called it changes the inventory_hash dropping the version field. The clone works around this
+    bolt_result = run_task('provision::fix_secure_path', targets, params, config: DEFAULT_CONFIG_DATA, inventory: inventory_hash.clone)
+    raise_bolt_errors(bolt_result, 'Fixing secure path failed.')
+    bolt_result
+  end
+end
+
+task :fix_secure_path, [:collection, :target_node_name] do |_task, args|
+  inventory_hash = inventory_hash_from_inventory_file
+  targets = 'ssh_nodes'
+
+  puts 'fix_secure_path'
+  require 'bolt_spec/run'
+  include BoltSpec::Run
+
+  results = fix_secure_path(args[:collection], targets, inventory_hash)
+  results.each do |result|
+    if result['status'] != 'success'
+      command_to_run = "bolt task run provision::fix_secure_path --targets #{result['target']} --inventoryfile inventory.yaml --modulepath #{DEFAULT_CONFIG_DATA['modulepath']}"
+      raise "Failed on #{result['target']}\n#{result}\ntry running '#{command_to_run}'"
+    else
+      puts "#{result['status']} running #{result['object']} on #{result['target']}"
+    end
+  end
+end
+
+
