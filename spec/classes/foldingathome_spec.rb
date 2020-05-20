@@ -9,14 +9,16 @@ describe 'foldingathome' do
 
       it { is_expected.to compile }
       it { is_expected.to contain_package('fahclient').with_ensure('installed') }
-      it { is_expected.to contain_File('/etc/fahclient').with(
-        ensure: 'directory',
+      it {
+        is_expected.to contain_File('/etc/fahclient').with(
+          ensure: 'directory',
         )
       }
-      it { is_expected.to contain_File('/etc/fahclient/config.xml').with(
-        ensure: 'file',
-        require: 'File[/etc/fahclient]',
-        notify: 'Service[FAHClient]',
+      it {
+        is_expected.to contain_File('/etc/fahclient/config.xml').with(
+          ensure: 'file',
+          require: 'File[/etc/fahclient]',
+          notify: 'Service[FAHClient]',
         )
       }
     end

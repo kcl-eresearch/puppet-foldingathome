@@ -16,8 +16,17 @@ pp_basic = <<-PUPPETCODE
 PUPPETCODE
 
 idempotent_apply(pp_basic)
+describe 'foldingathome' do
+  describe service('FAHClient') do
+    it { is_expected.to be_enabled }
+    it { is_expected.to be_running }
+  end
 
-describe service('FAHClient') do
-  it { is_expected.to be_enabled }
-  it { is_expected.to be_running }
+  describe file('/etc/fahclient/config.xml') do
+    it { is_expected.to be_file }
+    it { is_expected.to contain("<user v='fahpuppettestuser'/>") }
+    it { is_expected.to contain("<passkey v='12345678901234567890123456789012' />") }
+    it { is_expected.to contain("<team v='0'/>") }
+    it { is_expected.to contain("<gpu v='false'/>") }
+  end
 end
