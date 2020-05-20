@@ -1,6 +1,6 @@
 ---
   vagrant:
     provisioner: vagrant
-    images: ['generic/ubuntu1804', 'generic/debian9']
+    images: ['generic/ubuntu1804', 'generic/ubuntu2004', 'generic/debian9']
     params:
         vagrant_provider: virtualbox
