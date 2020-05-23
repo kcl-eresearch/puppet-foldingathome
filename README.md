@@ -1,6 +1,8 @@
 # puppet-foldingathome
 Puppet module to install folding@home
 
+[![Build Status](https://travis-ci.org/njhowell/puppet-foldingathome.svg?branch=master)](https://travis-ci.org/njhowell/puppet-foldingathome)
+
 
 # Development
 
