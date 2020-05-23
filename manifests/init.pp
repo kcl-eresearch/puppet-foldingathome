@@ -27,6 +27,7 @@ class foldingathome (
   $user_passkey = undef,
   $service_ensure = 'running',
 ) {
+  ensure_resource('package', 'bzip2', {'ensure' => 'installed'})
 
   archive {'/tmp/fahclient.deb':
     ensure => present,
@@ -37,7 +38,7 @@ class foldingathome (
     ensure   => installed,
     provider => 'dpkg',
     source   => '/tmp/fahclient.deb',
-    require  => [Archive['/tmp/fahclient.deb'], File['/etc/fahclient/config.xml']],
+    require  => [Archive['/tmp/fahclient.deb'], File['/etc/fahclient/config.xml'], Package['bzip2']],
   }
 
   service {'FAHClient':

@@ -94,6 +94,7 @@ task :run_tests, [:key, :collection, :module_repository] do |_task, args|
   Rake::Task['litmus:install_agent'].invoke(args[:collection])
   Rake::Task['fix_secure_path'].invoke
   Rake::Task['litmus:install_module'].invoke(nil, args[:module_repository])
+  sleep(10) # Seems to be a need for a delay here...
   Rake::Task['litmus:acceptance:parallel'].invoke
 end
 
