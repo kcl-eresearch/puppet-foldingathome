@@ -10,6 +10,7 @@
 # @param [Hash] cpu_slots Hash representing the CPU slots and the number of cores for each slot
 # @param web_password Password for remote access to the web console
 # @param user_passkey Passkey for yor username, if you have one
+# @param service_ensure Defaults to 'running'. Useful for automated tests.
 #
 # @example
 #   include foldingathome
@@ -24,6 +25,7 @@ class foldingathome (
   Hash $cpu_slots = {'0' => '1'},
   $web_password = undef,
   $user_passkey = undef,
+  $service_ensure = 'running',
 ) {
 
   archive {'/tmp/fahclient.deb':
@@ -35,18 +37,22 @@ class foldingathome (
     ensure   => installed,
     provider => 'dpkg',
     source   => '/tmp/fahclient.deb',
-    require  => Archive['/tmp/fahclient.deb']
+    require  => [Archive['/tmp/fahclient.deb'], File['/etc/fahclient/config.xml']],
   }
 
   service {'FAHClient':
-    ensure  => running,
+    ensure  => $service_ensure,
     require => [Package['fahclient'], File['/etc/fahclient/config.xml']]
+  }
+
+  file {'/etc/fahclient':
+    ensure => directory,
   }
 
   file {'/etc/fahclient/config.xml':
     ensure  => file,
     content => epp('foldingathome/config.xml.epp'),
-    require => Package['fahclient'],
+    require => File['/etc/fahclient'],
     notify  => Service['FAHClient']
   }
 }

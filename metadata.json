@@ -1,13 +1,14 @@
 {
-  "name": "nickhowell-foldingathome",
+  "name": "njhowell-foldingathome",
   "version": "0.1.0",
   "author": "Nick Howell",
-  "summary": "A puppet module for installing the folding @ home clienton Linux systems",
+  "summary": "A module to install the Folding@Home Linux Client",
   "license": "MIT",
   "source": "https://github.com/njhowell/puppet-foldingathome",
   "dependencies": [
-    { 
-      "name": "puppet/archive", "version_requirement": ">= 3.0.0 < 5.0.0"
+    {
+      "name": "puppet/archive",
+      "version_requirement": ">= 3.0.0 < 5.0.0"
     }
   ],
   "operatingsystem_support": [
@@ -29,5 +30,8 @@
       "name": "puppet",
       "version_requirement": ">= 4.10.0 < 7.0.0"
     }
-  ]
+  ],
+  "pdk-version": "1.18.0",
+  "template-url": "pdk-default#1.18.0",
+  "template-ref": "tags/1.18.0-0-g095317c"
 }
