@@ -3,4 +3,7 @@
     provisioner: vagrant
     images: ['generic/ubuntu1804', 'generic/ubuntu2004', 'generic/debian9']
     params:
-        vagrant_provider: virtualbox
+      vagrant_provider: virtualbox
+  travis_docker:
+    provisioner: docker
+    images: ['litmusimage/ubuntu:18.04', 'litmusimage/ubuntu:20.04', 'litmusimage/debian:9']
