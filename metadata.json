@@ -9,6 +9,9 @@
     {
       "name": "puppet/archive",
       "version_requirement": ">= 3.0.0 < 5.0.0"
+    },
+    {
+      "name": "puppet/stdlib"
     }
   ],
   "operatingsystem_support": [
