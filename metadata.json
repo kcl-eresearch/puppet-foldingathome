@@ -5,6 +5,8 @@
   "summary": "A module to install the Folding@Home Linux Client",
   "license": "MIT",
   "source": "https://github.com/njhowell/puppet-foldingathome",
+  "project_page": "https://github.com/njhowell/puppet-foldingathome",
+  "issues_url": "https://github.com/njhowell/puppet-foldingathome/issues",
   "dependencies": [
     {
       "name": "puppet/archive",
