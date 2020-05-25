@@ -1,6 +1,6 @@
 {
   "name": "njhowell-foldingathome",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Nick Howell",
   "summary": "A module to install the Folding@Home Linux Client",
   "license": "MIT",
