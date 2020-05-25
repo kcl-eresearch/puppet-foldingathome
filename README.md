@@ -9,7 +9,7 @@ This is a simple module to install the [Folding@Home](https://foldingathome.org/
 
 # Setup
 `include foldingathome` is enough to get started. However, you may wish to pass in a username and/or team ID:
-```
+```puppet 
 class {'foldingathome':
   user_name => 'example_user',
   team_id   => '1234'
@@ -20,7 +20,7 @@ class {'foldingathome':
 ## Configuring identity
 Specify username, team ID and a passkey to configure your folding@home identity.
 
-```
+```puppet
 class {'foldingathome':
   user_name    => 'example_user',
   team_id      => '1234',
@@ -30,7 +30,7 @@ class {'foldingathome':
 
 ## FAHClient version
 Specify the package URL to install a specific version
-```
+```puppet
 class {'foldingathome':
   url => 'http://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.5/fahclient_7.5.1_amd64.deb'
 }
@@ -39,7 +39,7 @@ class {'foldingathome':
 ## Configure CPU Slots
 Specify a Hash of CPU Slots and CPU Core counts. For example, to have two CPU slots one with 2 core, and one with 4 cores:
 
-```
+```puppet
 class {'foldingathome':
   cpu_slots => {
     '0' => '2',
@@ -50,7 +50,7 @@ class {'foldingathome':
 
 ## Configure Web management
 Configure the remote web control for the FAHClient:
-```
+```puppet
 class {'foldingathome':
   allow        => '0/0',
   web_allow    => '0/0',
