@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [Unreleased](https://github.com/njhowell/puppet-foldingathome/tree/HEAD)
+## [v0.1.1](https://github.com/njhowell/puppet-foldingathome/tree/v0.1.1) (2020-05-25)
 
-[Full Changelog](https://github.com/njhowell/puppet-foldingathome/compare/v0.1.0...HEAD)
+[Full Changelog](https://github.com/njhowell/puppet-foldingathome/compare/v0.1.0...v0.1.1)
 
 **Closed issues:**
 
