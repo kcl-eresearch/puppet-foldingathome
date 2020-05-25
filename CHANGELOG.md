@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Added
 
+- Prepare initial release [\#3](https://github.com/njhowell/puppet-foldingathome/pull/3) ([njhowell](https://github.com/njhowell))
 - Travis config [\#2](https://github.com/njhowell/puppet-foldingathome/pull/2) ([njhowell](https://github.com/njhowell))
 - Pdk tests [\#1](https://github.com/njhowell/puppet-foldingathome/pull/1) ([njhowell](https://github.com/njhowell))
 
