@@ -8,6 +8,7 @@
 # @param tean_id Team ID that your contributing to
 # @param url Download URL for the Folding@Home Client Installer
 # @param [Hash] cpu_slots Hash representing the CPU slots and the number of cores for each slot
+# @param gpu_slots Array listing GPU slot IDs, which should follow on from cpu_slots' last ID
 # @param web_password Password for remote access to the web console
 # @param user_passkey Passkey for yor username, if you have one
 # @param service_ensure Defaults to 'running'. Useful for automated tests.
@@ -23,6 +24,7 @@ class foldingathome (
   $team_id = 0,
   $url = 'http://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.5/fahclient_7.5.1_amd64.deb',
   Hash $cpu_slots = {'0' => '1'},
+  Array $gpu_slots = [],
   $web_password = undef,
   $user_passkey = undef,
   $service_ensure = 'running',

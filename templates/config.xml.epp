@@ -33,6 +33,8 @@
   </slot>
 <% } -%>
 
-
+<% $foldingathome::gpu_slots.each |$slot_id| { %>
+  <slot id='<%= $slot_id %>' type='GPU' />
+<% } -%>
 
 </config>
